@@ -10,25 +10,13 @@ const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5000';
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-const PRODUCTS = {
-  'early-bird': {
-    name: 'The Quiet Operator Playbook — Early Bird',
-    description: 'The complete playbook + all templates, scripts, and starter code. Early bird pricing.',
-    price: 14900, // $149.00 in cents
-  },
-  'full-price': {
-    name: 'The Quiet Operator Playbook',
-    description: 'The complete playbook + all templates, scripts, and starter code.',
-    price: 29900, // $299.00 in cents
-  },
+const PRODUCT = {
+  name: 'The Quiet Operator Playbook',
+  description: 'The step-by-step playbook for turning AI skills into recurring revenue.',
+  price: 2900, // $29.00 in cents
 };
 
-app.post('/create-checkout-session/:tier', async (req, res) => {
-  const product = PRODUCTS[req.params.tier];
-  if (!product) {
-    return res.status(400).json({ error: 'Invalid tier. Use "early-bird" or "full-price".' });
-  }
-
+app.post('/create-checkout-session/playbook', async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -37,10 +25,10 @@ app.post('/create-checkout-session/:tier', async (req, res) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: product.name,
-              description: product.description,
+              name: PRODUCT.name,
+              description: PRODUCT.description,
             },
-            unit_amount: product.price,
+            unit_amount: PRODUCT.price,
           },
           quantity: 1,
         },
