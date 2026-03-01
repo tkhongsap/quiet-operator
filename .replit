@@ -25,13 +25,13 @@ args = "Backend API"
 name = "Start application"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx serve landing-page -p 5000 -l tcp://0.0.0.0:5000"
-waitForPort = 5000
-
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx --yes serve landing-page -p 5000 -l tcp://0.0.0.0:5000"
+waitForPort = 5000
 
 [[workflows.workflow]]
 name = "Backend API"
