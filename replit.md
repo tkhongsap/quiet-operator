@@ -34,13 +34,14 @@ case-studies/       # Research and case studies
 - **Start application**: `npx serve landing-page -p 5000 -l tcp://0.0.0.0:5000` (port 5000, webview)
 - **Backend API**: `cd server && node server.js` (port 3000, console)
 
-## Environment Variables (server/.env)
+## Environment Variables
 
-```
-STRIPE_SECRET_KEY=sk_test_...   # Stripe secret key (test or live)
-CLIENT_URL=https://...          # Public URL of the frontend
-PORT=3000                       # Backend port
-```
+Managed via Replit Secrets and Environment Variables:
+
+- `STRIPE_SECRET_KEY` (secret) — Stripe secret key (sk_test_... for test mode)
+- `STRIPE_PUBLISHABLE_KEY` (env var) — Stripe publishable key (pk_test_...)
+- `CLIENT_URL` (env var) — Public URL of the frontend (Replit domain)
+- `PORT` (env var) — Backend port (3000)
 
 ## API Endpoints
 

@@ -1,6 +1,12 @@
-require('dotenv').config();
+if (require('fs').existsSync('.env')) require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error('FATAL: STRIPE_SECRET_KEY is not set. Add it as a secret in the Replit Secrets tab.');
+  process.exit(1);
+}
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
