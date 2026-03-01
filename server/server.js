@@ -4,10 +4,10 @@ const cors = require('cors');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
-const PORT = process.env.PORT || 4242;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5500';
+const PORT = process.env.PORT || 3000;
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5000';
 
-app.use(cors({ origin: CLIENT_URL }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 const PRODUCTS = {
