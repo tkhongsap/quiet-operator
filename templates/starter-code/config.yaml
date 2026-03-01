@@ -1,0 +1,75 @@
+# Quiet Operator — Configuration
+# Copy this file and fill in your values. Never commit API keys to git.
+
+# ---------------------------------------------------------------------------
+# API Configuration
+# ---------------------------------------------------------------------------
+api:
+  openai_key: "sk-your-openai-api-key-here"  # or use OPENAI_API_KEY env var
+  model: "gpt-4o"  # Options: gpt-4o, gpt-4o-mini, gpt-4.1
+
+# ---------------------------------------------------------------------------
+# Schedule Configuration
+# ---------------------------------------------------------------------------
+schedule:
+  # "cron" = run once and exit (use with system cron)
+  # "loop" = run continuously on an interval
+  mode: "loop"
+  interval_minutes: 30
+
+  # If using system cron instead, add this to your crontab:
+  # */30 * * * * cd /path/to/client && python agent.py
+
+# ---------------------------------------------------------------------------
+# Agent Definitions (for orchestrator.py)
+# ---------------------------------------------------------------------------
+agents:
+  research:
+    name: "Research Agent"
+    description: "Gathers and analyzes input data"
+    model: "gpt-4o"
+
+  processing:
+    name: "Processing Agent"
+    description: "Transforms research into actionable items"
+    model: "gpt-4o-mini"  # Cheaper model for routine processing
+
+  quality_check:
+    name: "Quality Check Agent"
+    description: "Reviews output quality before delivery"
+    model: "gpt-4o"
+
+  reporting:
+    name: "Reporting Agent"
+    description: "Generates client-ready reports"
+    model: "gpt-4o"
+
+# ---------------------------------------------------------------------------
+# Notifications
+# ---------------------------------------------------------------------------
+notifications:
+  slack_webhook: "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+  email:
+    from: "automation@yourdomain.com"
+    sendgrid_key: "SG.your-sendgrid-key-here"
+  sms:
+    twilio_sid: "your-twilio-sid"
+    twilio_token: "your-twilio-token"
+    twilio_from: "+1234567890"
+
+# ---------------------------------------------------------------------------
+# Quality Gates
+# ---------------------------------------------------------------------------
+quality:
+  min_score: 70          # Minimum quality score to pass (0-100)
+  max_retries: 2         # Retries per phase on failure
+  escalate_on_fail: true # Alert you if quality gate fails after retries
+
+# ---------------------------------------------------------------------------
+# Monitoring
+# ---------------------------------------------------------------------------
+monitoring:
+  health_check_interval_minutes: 60
+  alert_on_error: true
+  daily_summary: true
+  daily_summary_time: "08:00"  # Local time

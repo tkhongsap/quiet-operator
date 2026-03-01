@@ -1,0 +1,68 @@
+{
+  "client": "acme_dental",
+  "project": "appointment_reminders",
+  "phase": "processing",
+  "status": "healthy",
+  "last_run": "2026-03-01T06:00:00Z",
+  "created_at": "2026-02-15T10:00:00Z",
+  "metrics": {
+    "items_processed": 342,
+    "errors": 2,
+    "hours_saved_this_month": 46.2,
+    "appointments_reminded": 289,
+    "no_shows_followed_up": 53
+  },
+  "phases_completed": ["research"],
+  "quality_scores": {
+    "research": 88
+  },
+  "pending_tasks": [
+    {
+      "id": "task-001",
+      "type": "appointment_reminder",
+      "patient_id": "P-4421",
+      "appointment_date": "2026-03-02T10:00:00+07:00",
+      "reminder_type": "24h",
+      "status": "pending"
+    },
+    {
+      "id": "task-002",
+      "type": "no_show_followup",
+      "patient_id": "P-3887",
+      "missed_date": "2026-02-28T14:00:00+07:00",
+      "attempts": 1,
+      "status": "pending"
+    }
+  ],
+  "completed_tasks": [
+    {
+      "id": "task-000",
+      "type": "appointment_reminder",
+      "patient_id": "P-4399",
+      "completed_at": "2026-03-01T06:02:14Z",
+      "result": "confirmed"
+    }
+  ],
+  "results": {
+    "research": {
+      "findings": [
+        "Average no-show rate: 18% before automation",
+        "Peak no-show days: Monday and Friday",
+        "SMS reminders have 94% open rate vs 22% for email"
+      ],
+      "confidence": 88,
+      "recommendations": [
+        "Send SMS at 48h and 24h before appointment",
+        "Add LINE messaging for Thai-speaking patients",
+        "Implement automatic reschedule for confirmed no-shows"
+      ]
+    }
+  },
+  "errors": [],
+  "config": {
+    "reminder_channels": ["sms", "line"],
+    "reminder_schedule_hours": [48, 24],
+    "confidence_threshold": 0.85,
+    "escalate_to": "frontdesk@acmedental.com"
+  }
+}
