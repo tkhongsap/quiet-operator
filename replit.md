@@ -45,13 +45,12 @@ Managed via Replit Secrets and Environment Variables:
 
 ## API Endpoints
 
-- `POST /create-checkout-session/:tier` — Creates a Stripe checkout session. Tier can be `early-bird` ($149) or `full-price` ($299)
+- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session for The Quiet Operator Playbook ($29)
 - `GET /health` — Health check
 
 ## Products
 
-- **Early Bird**: $149 (normally $299)
-- **Full Price**: $299
+- **The Quiet Operator Playbook**: $29
 
 ## Setup Notes
 

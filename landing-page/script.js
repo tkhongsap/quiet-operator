@@ -1,5 +1,5 @@
 // ===== Config =====
-const API_URL = '';
+const API_URL = 'https://a5692388-7de2-4b0a-a5ac-eb6998583c8b-00-2cugbbxqp58qp.pike.replit.dev:3000';
 
 // ===== Scroll animations =====
 const observer = new IntersectionObserver((entries) => {
