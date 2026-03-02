@@ -5,7 +5,8 @@
       "Bash(wc -l /home/runner/workspace/content/*.md /home/runner/workspace/templates/*.md 2>/dev/null | tail -20)",
       "Bash(git pull --rebase origin main)",
       "Bash(ls -d /home/runner/workspace/.claude/skills/*/ | xargs -I {} sh -c 'echo \"=== {} ===\" && ls -la {}')",
-      "Bash(git push -u origin feature/update-landing-page-and-contents)"
+      "Bash(git push -u origin feature/update-landing-page-and-contents)",
+      "Bash(git push origin main 2>&1)"
     ]
   }
 }
