@@ -3,50 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You — The Quiet Operator Playbook</title>
+  <title>You're In — Quiet Operator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .success { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
-    .success__icon { font-size: 64px; margin-bottom: 24px; }
-    .success__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
-    .success__subtitle { font-size: 1.2rem; color: var(--text-secondary, #6b7280); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
-    .success__downloads { background: var(--surface, #f9fafb); border-radius: 16px; padding: 32px; max-width: 500px; margin: 0 auto 32px; text-align: left; }
-    .success__downloads h3 { margin-bottom: 16px; font-size: 1.1rem; }
-    .success__downloads ul { list-style: none; padding: 0; }
-    .success__downloads li { padding: 12px 0; border-bottom: 1px solid var(--border, #e5e7eb); }
-    .success__downloads li:last-child { border-bottom: none; }
-    .success__downloads a { color: var(--accent, #6366f1); text-decoration: none; font-weight: 600; }
-    .success__downloads a:hover { text-decoration: underline; }
-  </style>
 </head>
 <body>
   <section class="success">
-    <div>
-      <div class="success__icon">🎉</div>
-      <h1 class="success__title">You're In.</h1>
-      <p class="success__subtitle">Welcome to the Quiet Operator community. Your purchase is confirmed. Check your email for the receipt — and download your playbook and templates below.</p>
+    <div class="success__inner">
+      <div class="success__check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h1 class="success__title">You're <em>in</em></h1>
+      <p class="success__subtitle">Thanks for grabbing the playbook. Download your files below — and welcome to the Quiet Operator community.</p>
 
       <div class="success__downloads">
-        <h3>📦 Your Downloads</h3>
         <ul>
-          <li>📖 <a href="#">The Quiet Operator Playbook (PDF)</a></li>
-          <li>🎯 <a href="#">Niche Finder Scoring Template</a></li>
-          <li>🎤 <a href="#">Client Pitch Deck</a></li>
-          <li>📝 <a href="#">Proposal & Pricing Templates</a></li>
-          <li>💬 <a href="#">Outreach Scripts</a></li>
-          <li>💻 <a href="#">Agent Architecture Starter Code (GitHub)</a></li>
-          <li>📊 <a href="#">Case Study Library</a></li>
+          <li><a href="#">📖 The Quiet Operator Playbook (PDF)</a></li>
+          <li><a href="#">🎯 Niche Finder Scoring Matrix</a></li>
+          <li><a href="#">🎤 Client Pitch Deck</a></li>
+          <li><a href="#">📝 Proposal &amp; Pricing Templates</a></li>
+          <li><a href="#">💬 Outreach Scripts</a></li>
+          <li><a href="https://github.com/tkhongsap">💻 Agent Starter Code (GitHub)</a></li>
+          <li><a href="#">📊 Case Study Library</a></li>
         </ul>
       </div>
 
-      <p style="color: var(--text-secondary, #6b7280); font-size: 0.9rem;">Download links will also be sent to your email. Questions? Reply to the receipt email.</p>
+      <p class="success__footnote">Download links also sent to your email.</p>
 
-      <div style="margin-top: 32px;">
-        <a href="/" class="btn btn--outline">← Back to Home</a>
-      </div>
+      <p class="success__social">Questions? <a href="https://x.com/tkhongsap" target="_blank">@tkhongsap on X</a> · <a href="mailto:ta@tkhongsap.io">ta@tkhongsap.io</a></p>
+
+      <a href="/" class="success__back">← Back to Home</a>
     </div>
   </section>
 </body>
