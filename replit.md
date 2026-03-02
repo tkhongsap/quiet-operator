@@ -9,7 +9,7 @@ landing-page/       # Static frontend (HTML/CSS/JS)
   index.html        # Main landing page
   styles.css        # Styles
   script.js         # Frontend logic + Stripe checkout calls
-  success.html      # Post-purchase success page
+  success.html      # Post-purchase success page (minimal: checkmark, Download PDF button, contact)
 
 server/             # Node.js/Express backend
   server.js         # Express API server (Stripe checkout sessions)

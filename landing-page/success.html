@@ -1,53 +1,30 @@
 <!DOCTYPE html>
-<html lang="th" data-i18n-title="success.page_title">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>เรียบร้อย! — Quiet Operator</title>
+  <title>You're In — Quiet Operator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script>
-    (function(){var l=localStorage.getItem('qo-locale');if(l==='en')document.documentElement.classList.add('i18n-loading')})();
-  </script>
 </head>
-<body class="locale-th">
-  <div style="position:fixed;top:16px;right:24px;z-index:100">
-    <button class="locale-switch" type="button">EN</button>
-  </div>
-
+<body>
   <section class="success">
     <div class="success__inner">
       <div class="success__check">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
 
-      <h1 class="success__title" data-i18n-html="success.title">เรียบร้อย!</h1>
-      <p class="success__subtitle" data-i18n="success.subtitle">ขอบคุณที่เลือก playbook เล่มนี้ ดาวน์โหลดไฟล์ได้ด้านล่าง — ยินดีต้อนรับสู่ Quiet Operator community</p>
+      <h1 class="success__title">You're <em>in</em></h1>
+      <p class="success__subtitle">Thanks for grabbing the playbook. Click below to download your copy. If you have questions, find me on X.</p>
 
-      <div class="success__downloads">
-        <ul>
-          <li><a href="#" class="dl-primary"><span data-i18n="success.dl_playbook">The Quiet Operator Playbook</span> <span class="dl-badge">PDF</span></a></li>
-          <li><a href="#"><span data-i18n="success.dl_niche">Niche Finder Scoring Matrix</span></a></li>
-          <li><a href="#"><span data-i18n="success.dl_pitch">Client Pitch Deck</span></a></li>
-          <li><a href="#"><span data-i18n="success.dl_proposal">Proposal & Pricing Templates</span></a></li>
-          <li><a href="#"><span data-i18n="success.dl_outreach">Outreach Scripts</span></a></li>
-          <li><a href="https://github.com/tkhongsap" target="_blank"><span data-i18n="success.dl_code">Agent Starter Code</span> <span class="dl-badge dl-badge--alt">GitHub</span></a></li>
-          <li><a href="#"><span data-i18n="success.dl_cases">Case Study Library</span></a></li>
-        </ul>
-      </div>
+      <a href="#" class="success__download-btn">Download PDF <svg class="success__download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
 
-      <p class="success__footnote" data-i18n="success.footnote">ลิงก์ดาวน์โหลดถูกส่งไปยังอีเมลของคุณแล้วเช่นกัน</p>
-
-      <p class="success__social"><span data-i18n="success.social">มีคำถาม?</span> <a href="https://x.com/tkhongsap" target="_blank">@tkhongsap on X</a> · <a href="mailto:ta@tkhongsap.io">ta@tkhongsap.io</a></p>
-
-      <a href="/" class="success__back" data-i18n="success.back">← กลับหน้าหลัก</a>
+      <p class="success__contact">Questions? <a href="https://x.com/tkhongsap" target="_blank">@tkhongsap on X</a> · <a href="mailto:ta@tkhongsap.io">ta@tkhongsap.io</a></p>
     </div>
   </section>
-
-  <script src="i18n.js"></script>
 </body>
 </html>
