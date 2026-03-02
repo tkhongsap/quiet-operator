@@ -265,9 +265,9 @@ Tech stack: custom n8n workflows with AI integrations. Pricing: $5,000-15,000 se
 
 Flux Data Solutions, a New Jersey-based AI automation agency, targets local service businesses — law firms, dental practices, insurance agencies, HVAC contractors. Their model: a $497 "Revenue X-Ray" audit that identifies $10,000+ in savings, with a money-back guarantee if they don't find it. They implement the automation and charge ongoing retainers. Hyper-local focus, hyper-vertical targeting, risk-reversal pricing. Not famous. Just profitable.
 
-### Pasona Thailand — Multilingual Recruitment Automation
+### Multilingual Recruitment Automation
 
-My own work with Pasona Thailand — one of Japan's largest staffing companies — follows the same pattern. Their Thailand operation processes thousands of placements per year in Thai, English, and Japanese. Recruiters were spending 40-60% of their time on mechanical screening.
+My own work with a major Japanese staffing company follows the same pattern. Their Thailand operation processes thousands of placements per year in Thai, English, and Japanese. Recruiters were spending 40-60% of their time on mechanical screening.
 
 We built a multi-agent system: one agent parses resumes across three languages, another scores against requirements, a third generates shortlists with reasoning. Screening time dropped 70%. Recruiter capacity increased 2.5x.
 

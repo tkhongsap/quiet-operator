@@ -195,7 +195,7 @@ WhatsApp dominates in Singapore, Malaysia, and the Philippines. Zalo dominates i
 
 ## 9.5 Lessons from Building in Bangkok
 
-I built a multi-agent recruitment AI system for Pasona Thailand — one of Japan's largest staffing companies. Their Thailand operation processes thousands of placements per year, handling resumes in Thai, English, and Japanese. We built agents for resume parsing, candidate scoring, shortlist generation, and personalized bilingual outreach. The full story is in Chapter 8. Here, I want to focus on three lessons that are specific to building AI in SEA.
+I built a multi-agent recruitment AI system for a major Japanese staffing company. Their Thailand operation processes thousands of placements per year, handling resumes in Thai, English, and Japanese. We built agents for resume parsing, candidate scoring, shortlist generation, and personalized bilingual outreach. The full story is in Chapter 8. Here, I want to focus on three lessons that are specific to building AI in SEA.
 
 **Bilingual capability as moat.** A Silicon Valley company could build resume screening. But screening that handles Thai-English code-switching, understands Thai name formats (given name first, nickname usage in professional settings), respects Thai cultural conventions in outreach emails, and integrates with LINE for candidate communication? That requires someone who lives in both worlds. This bilingual capability isn't a nice-to-have — it's the moat that keeps global competitors out.
 

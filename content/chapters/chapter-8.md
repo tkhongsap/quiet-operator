@@ -116,9 +116,9 @@ A new competitor can copy your tech stack in a week. They can't copy your three 
 
 Depth beats breadth. Every time.
 
-### The Pasona Thailand Story
+### A Multilingual Recruitment Story
 
-My work with Pasona Thailand illustrates this compounding knowledge advantage concretely. Building a recruitment AI for one of Japan's largest staffing companies, operating in Thai, English, and Japanese, taught me three lessons that no tutorial could.
+My work with a major Japanese staffing company illustrates this compounding knowledge advantage concretely. Building a recruitment AI operating in Thai, English, and Japanese taught me three lessons that no tutorial could.
 
 **First, AI works best as a support tool.** The recruiters who were initially nervous became the system's biggest advocates — once they realized it handled the parts of their job they hated (mechanical screening) while freeing them for interviews, relationship building, and closing placements. This wasn't obvious from the outside. I only learned it by watching the shift happen over weeks, in a real office, with real resistance giving way to real adoption. That insight now shapes how I frame every automation for every client: not "this replaces you" but "this handles the part you hate."
 
@@ -126,7 +126,7 @@ My work with Pasona Thailand illustrates this compounding knowledge advantage co
 
 **Third, the gap between demo and production is the real product.** Building a resume-screening demo took a week. Building a system that handles 500 resumes a day, catches edge cases, recovers gracefully from errors, and produces reliable weekly reports for hiring managers took months. That production expertise — not the code — is what clients actually pay recurring retainers for.
 
-Each of these lessons compounded into better service for every subsequent client. The Pasona engagement didn't just generate revenue. It generated insight that made every future project faster, cheaper, and more valuable. That's the knowledge advantage in action.
+Each of these lessons compounded into better service for every subsequent client. The engagement didn't just generate revenue. It generated insight that made every future project faster, cheaper, and more valuable. That's the knowledge advantage in action.
 
 ---
 
