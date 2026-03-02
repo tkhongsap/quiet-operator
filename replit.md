@@ -42,9 +42,8 @@ Managed via Replit Secrets and Environment Variables:
 
 - `STRIPE_SECRET_KEY` (secret) — Stripe secret key (sk_test_... for test mode)
 - `STRIPE_PUBLISHABLE_KEY` (env var) — Stripe publishable key (pk_test_...)
-- `CLIENT_URL` (env var) — Public URL of the app (used for Stripe redirect URLs and email links; auto-detected from request headers if not set)
-- `PORT` (env var) — Server port (default 5000)
 - `RESEND_API_KEY` (secret) — Resend API key for sending confirmation emails
+- `CLIENT_URL` (optional) — Not set by default; server auto-detects from request headers. Only set if you need to override.
 
 ## API Endpoints
 

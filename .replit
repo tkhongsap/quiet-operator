@@ -47,5 +47,4 @@ build = ["npm", "install", "--prefix", "server"]
 [userenv]
 
 [userenv.shared]
-CLIENT_URL = "https://a5692388-7de2-4b0a-a5ac-eb6998583c8b-00-2cugbbxqp58qp.pike.replit.dev"
 STRIPE_PUBLISHABLE_KEY = "pk_test_51T5zRTE4uFhk939cler29YLJT5WZYmoyrfYyOrhq76LrgNN1LRAx6ig0LVXfltJwDYjfbSFHa2ap9vh0tsISLYVJ00jROpmRIp"
