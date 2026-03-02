@@ -45,13 +45,20 @@ Managed via Replit Secrets and Environment Variables:
 
 ## API Endpoints
 
-- `POST /create-checkout-session/:tier` — Creates a Stripe checkout session. Tier can be `early-bird` ($149) or `full-price` ($299)
+- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body for local currency pricing
+- `GET /pricing?currency=thb` — Returns pricing info for a given currency (amount, symbol, display string, supported currencies)
 - `GET /health` — Health check
 
 ## Products
 
-- **Early Bird**: $149 (normally $299)
-- **Full Price**: $299
+- **The Quiet Operator Playbook**: $29 USD (with locale currency support)
+
+## Locale Currency Support
+
+The frontend detects the user's timezone and maps it to a local currency. Supported currencies:
+- USD ($29), THB (฿999), VND (₫749,000), SGD (S$39), MYR (RM129), PHP (₱1,599), IDR (Rp469,000), JPY (¥4,500), KRW (₩39,000), EUR (€27), GBP (£23)
+- Prices are fixed per currency (not live exchange rates) and defined in server/server.js PRICING map
+- Falls back to USD for unsupported timezones/currencies
 
 ## Setup Notes
 

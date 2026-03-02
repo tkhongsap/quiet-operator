@@ -1,5 +1,60 @@
 // ===== Config =====
-const API_URL = '';
+const API_URL = 'https://a5692388-7de2-4b0a-a5ac-eb6998583c8b-00-2cugbbxqp58qp.pike.replit.dev:3000';
+
+// ===== Locale currency detection =====
+const TIMEZONE_CURRENCY_MAP = {
+  'Asia/Bangkok': 'thb',
+  'Asia/Ho_Chi_Minh': 'vnd',
+  'Asia/Saigon': 'vnd',
+  'Asia/Singapore': 'sgd',
+  'Asia/Kuala_Lumpur': 'myr',
+  'Asia/Manila': 'php',
+  'Asia/Jakarta': 'idr',
+  'Asia/Tokyo': 'jpy',
+  'Asia/Seoul': 'krw',
+  'Europe/London': 'gbp',
+  'Europe/Paris': 'eur',
+  'Europe/Berlin': 'eur',
+  'Europe/Amsterdam': 'eur',
+  'Europe/Rome': 'eur',
+  'Europe/Madrid': 'eur',
+  'Europe/Brussels': 'eur',
+  'Europe/Vienna': 'eur',
+  'Europe/Dublin': 'eur',
+  'Europe/Helsinki': 'eur',
+  'Europe/Lisbon': 'eur',
+};
+
+function detectCurrency() {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return TIMEZONE_CURRENCY_MAP[tz] || 'usd';
+  } catch {
+    return 'usd';
+  }
+}
+
+let detectedCurrency = detectCurrency();
+
+async function loadLocalPricing() {
+  try {
+    const res = await fetch(`${API_URL}/pricing?currency=${detectedCurrency}`);
+    const data = await res.json();
+    detectedCurrency = data.currency;
+
+    document.querySelectorAll('.product__price').forEach(el => {
+      el.textContent = data.display;
+    });
+
+    document.querySelectorAll('[data-checkout]').forEach(btn => {
+      btn.textContent = `Get the Playbook — ${data.display}`;
+    });
+  } catch (err) {
+    console.error('Failed to load local pricing:', err);
+  }
+}
+
+loadLocalPricing();
 
 // ===== Scroll animations =====
 const observer = new IntersectionObserver((entries) => {
@@ -33,6 +88,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 document.querySelectorAll('[data-checkout]').forEach(btn => {
   btn.addEventListener('click', async (e) => {
     e.preventDefault();
+    const originalText = btn.textContent;
     btn.textContent = 'Redirecting…';
     btn.style.pointerEvents = 'none';
 
@@ -40,6 +96,7 @@ document.querySelectorAll('[data-checkout]').forEach(btn => {
       const res = await fetch(`${API_URL}/create-checkout-session/playbook`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currency: detectedCurrency }),
       });
       const data = await res.json();
 
@@ -51,7 +108,7 @@ document.querySelectorAll('[data-checkout]').forEach(btn => {
     } catch (err) {
       console.error('Checkout error:', err);
       alert('Something went wrong. Please try again.');
-      btn.textContent = 'Get the Playbook — $29';
+      btn.textContent = originalText;
       btn.style.pointerEvents = '';
     }
   });
