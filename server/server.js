@@ -17,8 +17,14 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 const PRODUCT = {
-  name: 'The Quiet Operator Playbook',
-  description: 'The step-by-step playbook for turning AI skills into recurring revenue.',
+  en: {
+    name: 'The Quiet Operator Playbook',
+    description: 'The step-by-step playbook for turning AI skills into recurring revenue.',
+  },
+  th: {
+    name: 'The Quiet Operator Playbook',
+    description: 'Playbook แบบ step-by-step สำหรับเปลี่ยนทักษะ AI ให้เป็นรายได้ประจำ',
+  },
 };
 
 const PRICING = {
@@ -51,6 +57,8 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
   const requestedCurrency = (req.body.currency || 'usd').toLowerCase();
   const currency = PRICING[requestedCurrency] ? requestedCurrency : 'usd';
   const pricing = PRICING[currency];
+  const locale = req.body.locale === 'th' ? 'th' : 'en';
+  const product = PRODUCT[locale];
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -60,8 +68,8 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
           price_data: {
             currency: currency,
             product_data: {
-              name: PRODUCT.name,
-              description: PRODUCT.description,
+              name: product.name,
+              description: product.description,
             },
             unit_amount: pricing.amount,
           },

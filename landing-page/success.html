@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You're In — Quiet Operator</title>
+  <title>เรียบร้อย! — Quiet Operator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="locale-th">
+  <div style="position:fixed;top:16px;right:24px;z-index:100">
+    <button class="locale-switch" type="button">EN</button>
+  </div>
+
   <section class="success">
     <div class="success__inner">
       <div class="success__check">
@@ -18,27 +22,29 @@
         </svg>
       </div>
 
-      <h1 class="success__title">You're <em>in</em></h1>
-      <p class="success__subtitle">Thanks for grabbing the playbook. Download your files below — and welcome to the Quiet Operator community.</p>
+      <h1 class="success__title" data-i18n-html="success.title">เรียบร้อย!</h1>
+      <p class="success__subtitle" data-i18n="success.subtitle">ขอบคุณที่เลือก playbook เล่มนี้ ดาวน์โหลดไฟล์ได้ด้านล่าง — ยินดีต้อนรับสู่ Quiet Operator community</p>
 
       <div class="success__downloads">
         <ul>
-          <li><a href="#" class="dl-primary">The Quiet Operator Playbook <span class="dl-badge">PDF</span></a></li>
-          <li><a href="#">Niche Finder Scoring Matrix</a></li>
-          <li><a href="#">Client Pitch Deck</a></li>
-          <li><a href="#">Proposal &amp; Pricing Templates</a></li>
-          <li><a href="#">Outreach Scripts</a></li>
-          <li><a href="https://github.com/tkhongsap" target="_blank">Agent Starter Code <span class="dl-badge dl-badge--alt">GitHub</span></a></li>
-          <li><a href="#">Case Study Library</a></li>
+          <li><a href="#" class="dl-primary"><span data-i18n="success.dl_playbook">The Quiet Operator Playbook</span> <span class="dl-badge">PDF</span></a></li>
+          <li><a href="#"><span data-i18n="success.dl_niche">Niche Finder Scoring Matrix</span></a></li>
+          <li><a href="#"><span data-i18n="success.dl_pitch">Client Pitch Deck</span></a></li>
+          <li><a href="#"><span data-i18n="success.dl_proposal">Proposal & Pricing Templates</span></a></li>
+          <li><a href="#"><span data-i18n="success.dl_outreach">Outreach Scripts</span></a></li>
+          <li><a href="https://github.com/tkhongsap" target="_blank"><span data-i18n="success.dl_code">Agent Starter Code</span> <span class="dl-badge dl-badge--alt">GitHub</span></a></li>
+          <li><a href="#"><span data-i18n="success.dl_cases">Case Study Library</span></a></li>
         </ul>
       </div>
 
-      <p class="success__footnote">Download links also sent to your email.</p>
+      <p class="success__footnote" data-i18n="success.footnote">ลิงก์ดาวน์โหลดถูกส่งไปยังอีเมลของคุณแล้วเช่นกัน</p>
 
-      <p class="success__social">Questions? <a href="https://x.com/tkhongsap" target="_blank">@tkhongsap on X</a> · <a href="mailto:ta@tkhongsap.io">ta@tkhongsap.io</a></p>
+      <p class="success__social"><span data-i18n="success.social">มีคำถาม?</span> <a href="https://x.com/tkhongsap" target="_blank">@tkhongsap on X</a> · <a href="mailto:ta@tkhongsap.io">ta@tkhongsap.io</a></p>
 
-      <a href="/" class="success__back">← Back to Home</a>
+      <a href="/" class="success__back" data-i18n="success.back">← กลับหน้าหลัก</a>
     </div>
   </section>
+
+  <script src="i18n.js"></script>
 </body>
 </html>

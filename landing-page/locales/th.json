@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Quiet Operator — Playbook สำหรับสร้าง AI ที่ทำเงินได้จริง",
+    "description": "Playbook ฉบับลงมือทำ สำหรับสร้างระบบ AI automation ที่ธุรกิจยอมจ่าย หา niche ปิดลูกค้า สร้างระบบที่สร้างรายได้ประจำ สำหรับ developer, consultant และเจ้าของธุรกิจ"
+  },
+  "nav": {
+    "logo": "⚡ Quiet Operator",
+    "cta": "รับ Playbook"
+  },
+  "hero": {
+    "badge": "อัปเดตมีนาคม 2026",
+    "title": "เลิกทำ AI demo ได้แล้ว มาสร้าง AI ที่ทำเงินจริงกันเถอะ",
+    "subtitle": "ไม่ว่าคุณจะเป็น developer, consultant หรือเจ้าของธุรกิจ — นี่คือระบบแบบ step-by-step สำหรับเปลี่ยน AI ให้เป็นรายได้ประจำ"
+  },
+  "product": {
+    "meta": "PDF Guide",
+    "title": "The Quiet Operator Playbook",
+    "price": "฿999",
+    "desc": "Playbook แบบ step-by-step สำหรับเปลี่ยน AI ให้เป็นรายได้ประจำ — ไม่ว่าคุณจะสร้างเอง หรือจ้างคนทำ",
+    "list": [
+      "หา niche ที่ทำกำไรได้ และ validate ภายใน 48 ชั่วโมง",
+      "สร้างหรือจ้างทำระบบที่ใช้งานได้จริงภายในไม่กี่วัน ไม่ใช่หลายเดือน",
+      "เส้นทาง no-code และ technical — เลือกแบบที่เหมาะกับคุณ",
+      "Outreach script ที่ได้ผลลัพธ์จริง",
+      "กลยุทธ์ตั้งราคาตามคุณค่า (ไม่ใช่คิดรายชั่วโมง)",
+      "Proposal และ pitch template — พร้อมปรับใช้ได้เลย",
+      "กฎ 3 ลูกค้า สำหรับเปลี่ยนบริการให้เป็นสินค้า",
+      "Scale จาก freelancer สู่ platform $50K/เดือน",
+      "โอกาสในตลาด Southeast Asia ที่คนส่วนใหญ่มองข้าม"
+    ],
+    "cta": "รับ Playbook — {price}"
+  },
+  "inside": {
+    "title": "มีอะไรข้างใน",
+    "items": [
+      {
+        "num": "01 — 02",
+        "title": "Mindset + หา Niche ของคุณ",
+        "desc": "ทำไม niche ถึงชนะทุกครั้ง Scoring matrix สำหรับเลือกตลาด 48-hour validation sprint — ทดสอบความต้องการก่อนลงมือสร้าง"
+      },
+      {
+        "num": "03",
+        "title": "สร้าง & ขาย",
+        "desc": "72-hour build sprint framework Outreach script ที่ได้ผลจริง Value-based pricing ที่สั่งราคา premium ได้ Proposal template พร้อมส่งได้เลยวันนี้"
+      },
+      {
+        "num": "04",
+        "title": "Productize & Scale",
+        "desc": "กฎ 3 ลูกค้า สำหรับเปลี่ยนบริการเป็นสินค้า สร้าง platform layer เส้นทางจาก freelancer เดี่ยวๆ สู่ธุรกิจ $50K/เดือน"
+      },
+      {
+        "num": "Bonus",
+        "title": "ข้อได้เปรียบ Southeast Asia",
+        "desc": "ช่องว่าง AI adoption ที่ฝรั่งส่วนใหญ่มองไม่เห็น ข้อได้เปรียบด้านสองภาษา โอกาสในตลาดไทยและ SEA ที่การแข่งขันยังน้อย แต่ผู้ซื้อพร้อมจ่าย"
+      },
+      {
+        "num": "Templates",
+        "title": "Copy & ปรับใช้ได้เลย",
+        "desc": "Niche Finder Matrix, Pitch Deck, Proposal Template, Pricing Calculator, Outreach Script, Agent Starter Code — พร้อมใช้งานได้ทันที"
+      }
+    ]
+  },
+  "author": {
+    "title": "เกี่ยวกับผู้เขียน",
+    "desc": "เขียนโดย AI practitioner ระดับ senior ที่กรุงเทพฯ ผู้สร้างและ deploy ระบบ multi-agent AI ทุกวัน — ให้ธุรกิจจริง ไม่ใช่ demo บน Twitter"
+  },
+  "cta": {
+    "title": "พร้อมสร้าง AI ที่ทำเงินได้จริงหรือยัง?",
+    "desc": "Playbook เล่มนี้ครอบคลุมทุกอย่าง — ตั้งแต่เลือก niche, สร้าง, ขาย ไปจนถึง scale",
+    "button": "รับ Playbook — {price}"
+  },
+  "footer": {
+    "copy": "© 2026 Quiet Operator"
+  },
+  "checkout": {
+    "redirecting": "กำลังเปลี่ยนเส้นทาง…",
+    "error": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง"
+  },
+  "success": {
+    "title": "เรียบร้อย!",
+    "subtitle": "ขอบคุณที่เลือก playbook เล่มนี้ ดาวน์โหลดไฟล์ได้ด้านล่าง — ยินดีต้อนรับสู่ Quiet Operator community",
+    "dl_playbook": "The Quiet Operator Playbook",
+    "dl_niche": "Niche Finder Scoring Matrix",
+    "dl_pitch": "Client Pitch Deck",
+    "dl_proposal": "Proposal & Pricing Templates",
+    "dl_outreach": "Outreach Scripts",
+    "dl_code": "Agent Starter Code",
+    "dl_cases": "Case Study Library",
+    "footnote": "ลิงก์ดาวน์โหลดถูกส่งไปยังอีเมลของคุณแล้วเช่นกัน",
+    "social": "มีคำถาม?",
+    "back": "← กลับหน้าหลัก"
+  }
+}

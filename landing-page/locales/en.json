@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Quiet Operator — The Playbook for AI That Actually Makes Money",
+    "description": "The practical playbook for building AI automation that businesses buy. Find niches, land clients, build systems that pay monthly. For developers, consultants, and business owners."
+  },
+  "nav": {
+    "logo": "⚡ Quiet Operator",
+    "cta": "Get the Playbook"
+  },
+  "hero": {
+    "badge": "Updated March 2026",
+    "title": "Stop building AI demos. Start building AI that pays.",
+    "subtitle": "Whether you're a developer, consultant, or business owner — this is the step-by-step system for turning AI into recurring revenue."
+  },
+  "product": {
+    "meta": "PDF Guide",
+    "title": "The Quiet Operator Playbook",
+    "price": "$29",
+    "desc": "The step-by-step playbook for turning AI into recurring revenue — whether you build it yourself or hire someone who does.",
+    "list": [
+      "Find and validate a profitable AI niche in 48 hours",
+      "Build or commission a working solution in days, not months",
+      "No-code and technical paths — choose what fits you",
+      "Outreach scripts that actually get replies",
+      "Value-based pricing strategies (not hourly)",
+      "Proposal and pitch templates — ready to customize",
+      "The 3-client rule for productizing your service",
+      "Scaling from freelancer to $50K/month platform",
+      "Southeast Asia market opportunities most people miss"
+    ],
+    "cta": "Get the Playbook — {price}"
+  },
+  "inside": {
+    "title": "What's Inside",
+    "items": [
+      {
+        "num": "01 — 02",
+        "title": "The Mindset + Find Your Niche",
+        "desc": "Why niche beats broad every time. The scoring matrix for picking your market. 48-hour validation sprint — test demand before you build."
+      },
+      {
+        "num": "03",
+        "title": "Build & Sell",
+        "desc": "72-hour build sprint framework. Outreach scripts that get replies. Value-based pricing that commands premium rates. Proposal templates you can send today."
+      },
+      {
+        "num": "04",
+        "title": "Productize & Scale",
+        "desc": "The 3-client rule for turning services into products. Building a platform layer. The path from solo freelancer to $50K/month operation."
+      },
+      {
+        "num": "Bonus",
+        "title": "The Southeast Asia Advantage",
+        "desc": "The AI adoption gap most Westerners miss. The bilingual edge. Thai and SEA market opportunities with less competition and hungry buyers."
+      },
+      {
+        "num": "Templates",
+        "title": "Copy & Customize",
+        "desc": "Niche Finder Matrix, Pitch Deck, Proposal Template, Pricing Calculator, Outreach Scripts, Agent Starter Code — all ready to use."
+      }
+    ]
+  },
+  "author": {
+    "title": "About the Author",
+    "desc": "Written by a senior AI practitioner based in Bangkok who builds and deploys multi-agent AI systems daily — for real businesses, not Twitter demos."
+  },
+  "cta": {
+    "title": "Ready to build AI that actually pays?",
+    "desc": "The playbook covers everything — niche selection, building, selling, and scaling.",
+    "button": "Get the Playbook — {price}"
+  },
+  "footer": {
+    "copy": "© 2026 Quiet Operator"
+  },
+  "checkout": {
+    "redirecting": "Redirecting…",
+    "error": "Something went wrong. Please try again."
+  },
+  "success": {
+    "title": "You're <em>in</em>",
+    "subtitle": "Thanks for grabbing the playbook. Download your files below — and welcome to the Quiet Operator community.",
+    "dl_playbook": "The Quiet Operator Playbook",
+    "dl_niche": "Niche Finder Scoring Matrix",
+    "dl_pitch": "Client Pitch Deck",
+    "dl_proposal": "Proposal & Pricing Templates",
+    "dl_outreach": "Outreach Scripts",
+    "dl_code": "Agent Starter Code",
+    "dl_cases": "Case Study Library",
+    "footnote": "Download links also sent to your email.",
+    "social": "Questions?",
+    "back": "← Back to Home"
+  }
+}
