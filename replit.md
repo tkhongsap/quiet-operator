@@ -5,19 +5,20 @@ A product landing page with Stripe checkout backend for selling "The Quiet Opera
 ## Project Structure
 
 ```
-landing-page/       # Static frontend (HTML/CSS/JS)
+landing-page/       # Static frontend (HTML/CSS/JS), served by Express
   index.html        # Main landing page
   styles.css        # Styles
   script.js         # Frontend logic + Stripe checkout calls
   success.html      # Post-purchase success page (minimal: checkmark, Download PDF button, contact)
+  The_Quiet_Operator.pdf     # English PDF (copied from content/)
+  The_Quiet_Operator_TH.pdf  # Thai PDF (copied from content/)
+  serve.json        # Static server config (legacy, cleanUrls disabled)
 
-server/             # Node.js/Express backend
-  server.js         # Express API server (Stripe checkout sessions)
-  package.json      # Dependencies: express, cors, stripe, dotenv
-  .env              # Environment variables (not committed)
-  .env.example      # Example env file
+server/             # Node.js/Express backend (serves both API + static files)
+  server.js         # Express server: API endpoints + static file serving
+  package.json      # Dependencies: express, cors, stripe, dotenv, resend
 
-content/            # Playbook content (markdown)
+content/            # Source playbook PDFs (markdown + PDF)
 templates/          # Business templates (markdown)
 marketing/          # Marketing copy (markdown)
 case-studies/       # Research and case studies
@@ -25,14 +26,15 @@ case-studies/       # Research and case studies
 
 ## Architecture
 
-- **Frontend**: Static HTML/CSS/JS served via `npx serve` on port 5000
-- **Backend**: Express.js API on port 3000, handles Stripe checkout session creation
+- **Single Express server** on port 5000: serves both static files (landing-page/) and API endpoints
 - **Payment**: Stripe Checkout (server-side session creation, client-side redirect)
+- **Email**: Resend API for post-purchase confirmation emails
+- **Deployment**: Autoscale with `node server/server.js`
+- API calls from frontend use relative paths (empty API_URL), no cross-origin issues
 
 ## Workflows
 
-- **Start application**: `npx serve landing-page -p 5000 -l tcp://0.0.0.0:5000` (port 5000, webview)
-- **Backend API**: `cd server && node server.js` (port 3000, console)
+- **Start application**: `cd server && PORT=5000 node server.js` (port 5000, webview)
 
 ## Environment Variables
 
@@ -40,23 +42,23 @@ Managed via Replit Secrets and Environment Variables:
 
 - `STRIPE_SECRET_KEY` (secret) — Stripe secret key (sk_test_... for test mode)
 - `STRIPE_PUBLISHABLE_KEY` (env var) — Stripe publishable key (pk_test_...)
-- `CLIENT_URL` (env var) — Public URL of the frontend (Replit domain)
-- `PORT` (env var) — Backend port (3000)
+- `CLIENT_URL` (env var) — Public URL of the app (used for Stripe redirect URLs and email links; auto-detected from request headers if not set)
+- `PORT` (env var) — Server port (default 5000)
 - `RESEND_API_KEY` (secret) — Resend API key for sending confirmation emails
 
 ## API Endpoints
 
-- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body for local currency pricing. Success URL includes `?session_id={CHECKOUT_SESSION_ID}`
+- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body. Success URL includes `?session_id={CHECKOUT_SESSION_ID}`
 - `POST /fulfill` — Sends confirmation email after payment. Accepts `{ session_id }`, validates Stripe payment status, sends styled email via Resend. Idempotent (in-memory guard)
-- `GET /pricing?currency=thb` — Returns pricing info for a given currency (amount, symbol, display string, supported currencies)
+- `GET /pricing?currency=thb` — Returns pricing info for a given currency
 - `GET /health` — Health check
 
 ## Post-Purchase Email
 
-- Sent via Resend when user lands on success page with a valid Stripe session_id
+- Triggered when user lands on success page with a valid Stripe session_id
 - From: `Quiet Operator <onboarding@resend.dev>` (Resend default sender)
 - Styled HTML email with "You're in" header, Download PDF button, thank-you page link, contact info
-- PDF download links to `/The_Quiet_Operator.pdf` (served from landing-page directory)
+- PDF download links to `/The_Quiet_Operator.pdf` (served by Express from landing-page/)
 - Thai version also available at `/The_Quiet_Operator_TH.pdf`
 - Contact: @quietoperator67 on X · tk7p7103@gmail.com
 
@@ -73,8 +75,8 @@ The frontend detects the user's timezone and maps it to a local currency. Suppor
 
 ## Setup Notes
 
-- `serve.json` in landing-page/ disables clean URLs to preserve query parameters (session_id) on redirects
-- The frontend's `API_URL` in `script.js` points to the Replit public domain on port 3000
-- CORS is configured to allow all origins (`*`) for Replit environment compatibility
-- Deployment is configured as a static site (landing-page directory)
-- The backend needs its own deployment or the API_URL should be updated when deploying
+- Frontend API_URL is empty string (relative paths) — works because Express serves both API and static files
+- CORS is configured to allow all origins (`*`)
+- Deployment is autoscale: `node server/server.js` — same Express server handles everything
+- CLIENT_URL is auto-detected from request headers if env var is not set (supports deployment without manual config)
+- PDFs in landing-page/ are copies from content/ — if source PDFs are updated, re-copy them

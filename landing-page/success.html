@@ -31,9 +31,7 @@
       var params = new URLSearchParams(window.location.search);
       var sessionId = params.get('session_id');
       if (!sessionId) return;
-      var origin = window.location.origin;
-      var API_URL = origin.indexOf(':5000') !== -1 ? origin.replace(':5000', ':3000') : origin.replace(/:\d+$/, '') + ':3000';
-      fetch(API_URL + '/fulfill', {
+      fetch('/fulfill', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_id: sessionId })

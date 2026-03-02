@@ -1,4 +1,5 @@
 if (require('fs').existsSync('.env')) require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const { Resend } = require('resend');
@@ -16,11 +17,20 @@ if (!resend) {
 }
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5000';
+const PORT = process.env.PORT || 5000;
+const CLIENT_URL = process.env.CLIENT_URL || `http://localhost:${PORT}`;
+
+function getBaseUrl(req) {
+  if (process.env.CLIENT_URL) return process.env.CLIENT_URL;
+  const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  return `${proto}://${host}`;
+}
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, '..', 'landing-page')));
 
 const PRODUCT = {
   en: {
@@ -47,11 +57,10 @@ const PRICING = {
   gbp: { amount: 2300, symbol: '£', display: '£23' },
 };
 
-const PDF_URL = `${CLIENT_URL}/The_Quiet_Operator.pdf`;
-
 const fulfilledSessions = new Set();
 
-function buildConfirmationEmail() {
+function buildConfirmationEmail(baseUrl) {
+  const pdfUrl = `${baseUrl}/The_Quiet_Operator.pdf`;
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -79,13 +88,13 @@ function buildConfirmationEmail() {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center" style="padding-bottom:32px;">
-                    <a href="${PDF_URL}" style="display:inline-block;background:#d4a843;color:#0a0a0a;font-size:15px;font-weight:600;text-decoration:none;padding:14px 32px;border-radius:6px;">Download PDF</a>
+                    <a href="${pdfUrl}" style="display:inline-block;background:#d4a843;color:#0a0a0a;font-size:15px;font-weight:600;text-decoration:none;padding:14px 32px;border-radius:6px;">Download PDF</a>
                   </td>
                 </tr>
               </table>
               <p style="margin:0 0 16px;font-size:13px;color:#666;line-height:1.6;">
                 You can also access your thank-you page anytime at:<br>
-                <a href="${CLIENT_URL}/success.html" style="color:#d4a843;text-decoration:none;">${CLIENT_URL}/success.html</a>
+                <a href="${baseUrl}/success.html" style="color:#d4a843;text-decoration:none;">${baseUrl}/success.html</a>
               </p>
               <p style="margin:0;font-size:13px;color:#1a1a1a;line-height:1.6;">
                 <strong>Need help?</strong> Reply to this email or find me on X — I personally answer questions from playbook buyers.
@@ -143,8 +152,8 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${CLIENT_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${CLIENT_URL}/`,
+      success_url: `${getBaseUrl(req)}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${getBaseUrl(req)}/`,
     });
 
     res.json({ url: session.url });
@@ -187,7 +196,7 @@ app.post('/fulfill', async (req, res) => {
       from: 'Quiet Operator <onboarding@resend.dev>',
       to: customerEmail,
       subject: "You're in — here's your playbook",
-      html: buildConfirmationEmail(),
+      html: buildConfirmationEmail(getBaseUrl(req)),
     });
 
     console.log('Confirmation email sent to', customerEmail);
@@ -202,6 +211,6 @@ app.post('/fulfill', async (req, res) => {
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
