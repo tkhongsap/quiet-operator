@@ -3,7 +3,8 @@
     "allow": [
       "Bash(git -C /home/runner/workspace log --oneline -20)",
       "Bash(wc -l /home/runner/workspace/content/*.md /home/runner/workspace/templates/*.md 2>/dev/null | tail -20)",
-      "Bash(git pull --rebase origin main)"
+      "Bash(git pull --rebase origin main)",
+      "Bash(ls -d /home/runner/workspace/.claude/skills/*/ | xargs -I {} sh -c 'echo \"=== {} ===\" && ls -la {}')"
     ]
   }
 }

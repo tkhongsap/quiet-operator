@@ -87,21 +87,7 @@ Note: Truly "quiet" operators are by definition hard to find publicly. Some of t
 
 ---
 
-## Case Study 6: Nat Eliason / Felix — Autonomous AI Business ($14,718 in 3 weeks)
-
-**Who:** Nat Eliason, entrepreneur and writer
-**Niche:** Autonomous AI agent experiment — digital product creation and sales
-**What they built:** Gave an OpenClaw agent (Felix) $1,000 and tool access (Vercel, Stripe, Mac Mini). Felix created a website, a PDF guide, payment system, and generated revenue autonomously
-**Revenue:** $14,718 in 3 weeks + ~$100k in crypto wallet
-**Model:** Autonomous digital product sales — agent creates and sells products without human intervention
-**Key insight:** Demonstrated that AI agents can operate as autonomous business entities with proper memory systems, tool access, and proactive automation via cron jobs
-**Source:** https://www.youtube.com/watch?v=nSBKCZQkmYw (Peter Yang channel, 95K views)
-
-**Why this matters for QOP:** While this is more experimental than the typical quiet operator model, it demonstrates the ceiling of what's possible when you remove human bottlenecks. Relevant to Module 3's architecture patterns.
-
----
-
-## Case Study 7: WorkFlux — Pre-Configured Industry AI Automation
+## Case Study 6: WorkFlux — Pre-Configured Industry AI Automation
 
 **Who:** WorkFlux, AI automation platform
 **Niche:** Healthcare, legal, finance, and e-commerce — with pre-configured solutions per industry

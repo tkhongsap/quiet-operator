@@ -69,20 +69,7 @@
 
 ---
 
-## Case Study 6: Felix — The Autonomous Agent Experiment
-
-| Field | Detail |
-|-------|--------|
-| **Name/Alias** | Nat Eliason / Felix (the agent) |
-| **Niche** | Autonomous digital product creation and sales |
-| **Revenue** | $14,718 USD in 3 weeks + ~$100K in crypto |
-| **Model** | Gave an AI agent $1,000 and tool access. Agent created website, PDF product, payment system, and sold autonomously. |
-| **Key Takeaway** | Demonstrates the ceiling of what's possible with autonomous agents. More experimental than typical quiet operator model, but shows the power of proper tool access + scheduling. |
-| **Source** | [YouTube — Peter Yang](https://www.youtube.com/watch?v=nSBKCZQkmYw) |
-
----
-
-## Case Study 7: WorkFlux — Productized Industry Automation
+## Case Study 6: WorkFlux — Productized Industry Automation
 
 | Field | Detail |
 |-------|--------|
