@@ -1,0 +1,17 @@
+name: "❓ Question / คำถาม"
+description: "Ask a question about the project / ถามคำถามเกี่ยวกับโปรเจกต์"
+labels: ["question / คำถาม"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: "Question / คำถาม"
+      description: "What would you like to know? / อยากรู้อะไร?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context / บริบท"
+      description: "Any relevant details / รายละเอียดที่เกี่ยวข้อง"

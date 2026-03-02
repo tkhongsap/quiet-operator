@@ -1,0 +1,58 @@
+name: "🐛 Bug Report / รายงานบั๊ก"
+description: "Report a bug or unexpected behavior / แจ้งบั๊กหรือพฤติกรรมที่ไม่คาดคิด"
+labels: ["bug / บั๊ก"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report / รายงานบั๊ก
+        Thanks for reporting! Please fill in the details below.
+        ขอบคุณที่แจ้ง! กรุณากรอกรายละเอียดด้านล่าง
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description / คำอธิบาย"
+      description: "A clear description of the bug / อธิบายบั๊กให้ชัดเจน"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to Reproduce / ขั้นตอนการจำลองปัญหา"
+      description: "How to reproduce the issue / วิธีจำลองปัญหา"
+      placeholder: |
+        1. Go to / ไปที่ '...'
+        2. Click on / คลิกที่ '...'
+        3. See error / เห็นข้อผิดพลาด
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behavior / พฤติกรรมที่คาดหวัง"
+      description: "What should happen / ควรเกิดอะไรขึ้น"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual Behavior / พฤติกรรมจริง"
+      description: "What actually happened / เกิดอะไรขึ้นจริง"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Environment / สภาพแวดล้อม"
+      description: "OS, browser, version, etc. / ระบบปฏิบัติการ, เบราว์เซอร์, เวอร์ชัน ฯลฯ"
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots / ภาพหน้าจอ"
+      description: "If applicable / ถ้ามี"

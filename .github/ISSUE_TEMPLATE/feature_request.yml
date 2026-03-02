@@ -1,0 +1,38 @@
+name: "✨ Feature Request / ขอฟีเจอร์ใหม่"
+description: "Suggest a new feature or improvement / เสนอฟีเจอร์ใหม่หรือการปรับปรุง"
+labels: ["enhancement / ปรับปรุง"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request / ขอฟีเจอร์ใหม่
+        Have an idea? Tell us about it!
+        มีไอเดีย? เล่าให้เราฟัง!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem / ปัญหา"
+      description: "What problem does this solve? / ฟีเจอร์นี้แก้ปัญหาอะไร?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Proposed Solution / วิธีแก้ที่เสนอ"
+      description: "How would you like it to work? / อยากให้ทำงานอย่างไร?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives Considered / ทางเลือกอื่นที่พิจารณา"
+      description: "Any other approaches? / มีแนวทางอื่นบ้างไหม?"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Additional Context / บริบทเพิ่มเติม"
+      description: "Screenshots, links, etc. / ภาพหน้าจอ, ลิงก์ ฯลฯ"

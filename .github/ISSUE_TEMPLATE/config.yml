@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "💬 Discussions / พูดคุย"
+    url: https://github.com/tkhongsap/quiet-operator/discussions
+    about: "General discussions / พูดคุยทั่วไป"
