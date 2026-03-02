@@ -98,15 +98,21 @@
       });
     });
 
-    // Update <title>
-    var metaTitle = getKey('meta.title');
-    if (metaTitle) document.title = metaTitle;
+    // Update <title> from data-i18n-title on <html>
+    var titleKey = document.documentElement.getAttribute('data-i18n-title');
+    if (titleKey) {
+      var metaTitle = getKey(titleKey);
+      if (metaTitle) document.title = metaTitle;
+    }
 
-    // Update <meta description>
-    var metaDesc = getKey('meta.description');
-    if (metaDesc) {
-      var descTag = document.querySelector('meta[name="description"]');
-      if (descTag) descTag.setAttribute('content', metaDesc);
+    // Update <meta description> from data-i18n-desc on <html>
+    var descKey = document.documentElement.getAttribute('data-i18n-desc');
+    if (descKey) {
+      var metaDesc = getKey(descKey);
+      if (metaDesc) {
+        var descTag = document.querySelector('meta[name="description"]');
+        if (descTag) descTag.setAttribute('content', metaDesc);
+      }
     }
 
     // Update <html lang>
@@ -118,6 +124,9 @@
 
     // Update locale switcher label
     updateSwitcherLabel();
+
+    // Remove anti-FOUC class
+    document.documentElement.classList.remove('i18n-loading');
   }
 
   // --- Switcher label ---

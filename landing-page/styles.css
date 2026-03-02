@@ -13,6 +13,7 @@
 }
 
 html { scroll-behavior: smooth; }
+html.i18n-loading body { opacity: 0; }
 
 body {
   font-family: var(--font);
@@ -184,6 +185,21 @@ body {
   position: absolute;
   left: 0;
   color: var(--text-muted);
+}
+
+/* ===== Context Section (New) ===== */
+.context {
+  padding: 60px 0;
+}
+.context p {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+.context p:last-child {
+  margin-bottom: 0;
 }
 
 /* ===== Button ===== */

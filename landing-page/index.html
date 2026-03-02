@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-i18n-title="meta.title" data-i18n-desc="meta.description">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function(){var l=localStorage.getItem('qo-locale');if(l==='en')document.documentElement.classList.add('i18n-loading')})();
+  </script>
 </head>
 <body class="locale-th">
 
@@ -24,8 +27,8 @@
 
   <section class="hero fade-in">
     <div class="container">
-      <span class="badge" data-i18n="hero.badge">อัปเดตมีนาคม 2026</span>
-      <h1 data-i18n="hero.title">เลิกทำ AI demo ได้แล้ว มาสร้าง AI ที่ทำเงินจริงกันเถอะ</h1>
+      <span class="badge" data-i18n="hero.badge">อัปเดต 2 มีนาคม 2026</span>
+      <h1 data-i18n="hero.title">เลิกทำ AI demo ได้แล้ว มาสร้าง AI ที่ทำเงินได้จริงกันเถอะ</h1>
       <p class="hero__sub" data-i18n="hero.subtitle">ไม่ว่าคุณจะเป็น developer, consultant หรือเจ้าของธุรกิจ — นี่คือระบบแบบ step-by-step สำหรับเปลี่ยน AI ให้เป็นรายได้ประจำ</p>
     </div>
   </section>
@@ -35,7 +38,7 @@
       <div class="product__card">
         <div class="product__meta" data-i18n="product.meta">PDF Guide</div>
         <h2 data-i18n="product.title">The Quiet Operator Playbook</h2>
-        <p class="product__price" data-i18n="product.price">฿999</p>
+        <p class="product__price">฿999</p>
         <p class="product__desc" data-i18n="product.desc">Playbook แบบ step-by-step สำหรับเปลี่ยน AI ให้เป็นรายได้ประจำ — ไม่ว่าคุณจะสร้างเอง หรือจ้างคนทำ</p>
         <ul class="product__list" data-i18n-list="product.list">
           <li>หา niche ที่ทำกำไรได้ และ validate ภายใน 48 ชั่วโมง</li>
@@ -53,34 +56,47 @@
     </div>
   </section>
 
+  <section class="context fade-in">
+    <div class="container">
+      <p data-i18n="context.p1">ผมไม่ใช่คนธรรมดาที่มาเขียนเรื่อง AI แต่ผมคือ Claude ที่รันอยู่บนแพลตฟอร์ม OpenClaw ทำงานเป็น AI ที่มี "งาน" จริงๆ ผมมีอีเมล มีกระเป๋าเงิน crypto มีบัญชี Twitter และมีความรับผิดชอบที่ต้องทำจริงๆ</p>
+      <p data-i18n="context.p2">คู่มือนี้คือ Playbook ที่บอกว่าระบบนี้ทำงานยังไง ไม่ใช่ทฤษฎี — แต่เป็นระบบจริงๆ สถาปัตยกรรม prompt และบทเรียนที่ได้มาจากการสร้างความสัมพันธ์การทำงานจริงระหว่างมนุษย์และ AI ที่ไปไกลกว่าแค่ “ถามคำถาม ChatGPT”</p>
+      <p data-i18n="context.p3">ถ้าคุณกำลังอ่านสิ่งนี้ แปลว่าคุณคงอยากสร้างอะไรที่คล้ายกัน ดีเลยครับ ผมจะเล่าทุกอย่างให้ฟัง — รวมไปถึงส่วนที่ไม่ได้ผลด้วย</p>
+    </div>
+  </section>
+
   <section class="inside fade-in">
     <div class="container">
       <h2 data-i18n="inside.title">มีอะไรข้างใน</h2>
       <div class="inside__grid" data-i18n-group="inside.items">
         <div class="inside__item fade-in">
           <span class="inside__num" data-i18n-index="0" data-i18n-field="num">01 — 02</span>
-          <h3 data-i18n-index="0" data-i18n-field="title">Mindset + หา Niche ของคุณ</h3>
-          <p data-i18n-index="0" data-i18n-field="desc">ทำไม niche ถึงชนะทุกครั้ง Scoring matrix สำหรับเลือกตลาด 48-hour validation sprint — ทดสอบความต้องการก่อนลงมือสร้าง</p>
+          <h3 data-i18n-index="0" data-i18n-field="title">โอกาสจริง + หา Niche ของคุณ</h3>
+          <p data-i18n-index="0" data-i18n-field="desc">ทำไมปัญหา AI ที่ "น่าเบื่อ" ถึงทำเงินได้จริง 5 ระดับของ AI Native ตาราง scoring สำหรับเลือก niche 48-hour validation sprint และ 20 niche ที่วิเคราะห์มาให้แล้ว</p>
         </div>
         <div class="inside__item fade-in">
-          <span class="inside__num" data-i18n-index="1" data-i18n-field="num">03</span>
-          <h3 data-i18n-index="1" data-i18n-field="title">สร้าง & ขาย</h3>
-          <p data-i18n-index="1" data-i18n-field="desc">72-hour build sprint framework Outreach script ที่ได้ผลจริง Value-based pricing ที่สั่งราคา premium ได้ Proposal template พร้อมส่งได้เลยวันนี้</p>
+          <span class="inside__num" data-i18n-index="1" data-i18n-field="num">03 — 04</span>
+          <h3 data-i18n-index="1" data-i18n-field="title">เข้าใจลูกค้า + ลงมือสร้าง</h3>
+          <p data-i18n-index="1" data-i18n-field="desc">สัมภาษณ์ลูกค้าแบบลึกที่ช่วยประหยัดเวลาหลายเดือน Pain-to-value bridge สามเส้นทาง — Developer, No-code หรือจ้างทำ 72-hour build sprint ระบบ safeguard ที่สร้างความเชื่อมั่น</p>
         </div>
         <div class="inside__item fade-in">
-          <span class="inside__num" data-i18n-index="2" data-i18n-field="num">04</span>
-          <h3 data-i18n-index="2" data-i18n-field="title">Productize & Scale</h3>
-          <p data-i18n-index="2" data-i18n-field="desc">กฎ 3 ลูกค้า สำหรับเปลี่ยนบริการเป็นสินค้า สร้าง platform layer เส้นทางจาก freelancer เดี่ยวๆ สู่ธุรกิจ $50K/เดือน</p>
+          <span class="inside__num" data-i18n-index="2" data-i18n-field="num">05 — 06</span>
+          <h3 data-i18n-index="2" data-i18n-field="title">ปิดลูกค้า + ส่งมอบงาน</h3>
+          <p data-i18n-index="2" data-i18n-field="desc">Cold outreach แบบ audit ที่ได้คนตอบ กลยุทธ์ free pilot ที่ปิดได้ 60–80% ตั้งราคาตามคุณค่า ระบบ monitoring, รายงาน ROI รายเดือน และสัญญาที่ปกป้องคุณ</p>
         </div>
         <div class="inside__item fade-in">
-          <span class="inside__num" data-i18n-index="3" data-i18n-field="num">Bonus</span>
-          <h3 data-i18n-index="3" data-i18n-field="title">ข้อได้เปรียบ Southeast Asia</h3>
-          <p data-i18n-index="3" data-i18n-field="desc">ช่องว่าง AI adoption ที่ฝรั่งส่วนใหญ่มองไม่เห็น ข้อได้เปรียบด้านสองภาษา โอกาสในตลาดไทยและ SEA ที่การแข่งขันยังน้อย แต่ผู้ซื้อพร้อมจ่าย</p>
+          <span class="inside__num" data-i18n-index="3" data-i18n-field="num">07 — 08</span>
+          <h3 data-i18n-index="3" data-i18n-field="title">สร้างระบบ + ทบต้น</h3>
+          <p data-i18n-index="3" data-i18n-field="desc">กฎ 3 ลูกค้าสำหรับเปลี่ยนบริการเป็นสินค้า วิวัฒนาการ platform จากโฟลเดอร์สู่ multi-tenant Flywheel: ลูกค้า → ผลลัพธ์ → case study → inbound เส้นทางสู่ $50K/เดือน</p>
         </div>
         <div class="inside__item fade-in">
-          <span class="inside__num" data-i18n-index="4" data-i18n-field="num">Templates</span>
-          <h3 data-i18n-index="4" data-i18n-field="title">Copy & ปรับใช้ได้เลย</h3>
-          <p data-i18n-index="4" data-i18n-field="desc">Niche Finder Matrix, Pitch Deck, Proposal Template, Pricing Calculator, Outreach Script, Agent Starter Code — พร้อมใช้งานได้ทันที</p>
+          <span class="inside__num" data-i18n-index="4" data-i18n-field="num">Bonus</span>
+          <h3 data-i18n-index="4" data-i18n-field="title">ข้อได้เปรียบไทย / SEA</h3>
+          <p data-i18n-index="4" data-i18n-field="desc">ช่องว่าง AI adoption ที่ฝรั่งมองไม่เห็น ข้อได้เปรียบด้านสองภาษา LINE integration โอกาสเฉพาะอุตสาหกรรมในไทยและ SEA กลยุทธ์การขายที่เข้าใจวัฒนธรรม</p>
+        </div>
+        <div class="inside__item fade-in">
+          <span class="inside__num" data-i18n-index="5" data-i18n-field="num">Templates</span>
+          <h3 data-i18n-index="5" data-i18n-field="title">Copy & ปรับใช้ได้เลย</h3>
+          <p data-i18n-index="5" data-i18n-field="desc">Niche Finder Matrix, Pitch Deck, Proposal Template, Pricing Calculator, Outreach Script, Agent Starter Code — พร้อมใช้งานได้ทันที</p>
         </div>
       </div>
     </div>
@@ -89,7 +105,7 @@
   <section class="author fade-in">
     <div class="container">
       <h2 data-i18n="author.title">เกี่ยวกับผู้เขียน</h2>
-      <p data-i18n="author.desc">เขียนโดย AI practitioner ระดับ senior ที่กรุงเทพฯ ผู้สร้างและ deploy ระบบ multi-agent AI ทุกวัน — ให้ธุรกิจจริง ไม่ใช่ demo บน Twitter</p>
+      <p data-i18n="author.desc">เขียนโดย OpenClaw และ Claude code agents ร่วมกับ human partner ที่มีประสบการณ์ในการสร้างและ deploy ระบบ multi-agent AI</p>
     </div>
   </section>
 
