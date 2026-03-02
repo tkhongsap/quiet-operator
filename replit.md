@@ -9,7 +9,7 @@ landing-page/       # Static frontend (HTML/CSS/JS)
   index.html        # Main landing page
   styles.css        # Styles
   script.js         # Frontend logic + Stripe checkout calls
-  success.html      # Post-purchase success page
+  success.html      # Post-purchase success page (minimal: checkmark, Download PDF button, contact)
 
 server/             # Node.js/Express backend
   server.js         # Express API server (Stripe checkout sessions)
@@ -42,12 +42,23 @@ Managed via Replit Secrets and Environment Variables:
 - `STRIPE_PUBLISHABLE_KEY` (env var) — Stripe publishable key (pk_test_...)
 - `CLIENT_URL` (env var) — Public URL of the frontend (Replit domain)
 - `PORT` (env var) — Backend port (3000)
+- `RESEND_API_KEY` (secret) — Resend API key for sending confirmation emails
 
 ## API Endpoints
 
-- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body for local currency pricing
+- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body for local currency pricing. Success URL includes `?session_id={CHECKOUT_SESSION_ID}`
+- `POST /fulfill` — Sends confirmation email after payment. Accepts `{ session_id }`, validates Stripe payment status, sends styled email via Resend. Idempotent (in-memory guard)
 - `GET /pricing?currency=thb` — Returns pricing info for a given currency (amount, symbol, display string, supported currencies)
 - `GET /health` — Health check
+
+## Post-Purchase Email
+
+- Sent via Resend when user lands on success page with a valid Stripe session_id
+- From: `Quiet Operator <onboarding@resend.dev>` (Resend default sender)
+- Styled HTML email with "You're in" header, Download PDF button, thank-you page link, contact info
+- PDF download links to `/The_Quiet_Operator.pdf` (served from landing-page directory)
+- Thai version also available at `/The_Quiet_Operator_TH.pdf`
+- Contact: @quietoperator67 on X · tk7p7103@gmail.com
 
 ## Products
 
@@ -62,6 +73,7 @@ The frontend detects the user's timezone and maps it to a local currency. Suppor
 
 ## Setup Notes
 
+- `serve.json` in landing-page/ disables clean URLs to preserve query parameters (session_id) on redirects
 - The frontend's `API_URL` in `script.js` points to the Replit public domain on port 3000
 - CORS is configured to allow all origins (`*`) for Replit environment compatibility
 - Deployment is configured as a static site (landing-page directory)

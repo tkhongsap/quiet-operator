@@ -13,32 +13,32 @@
   <section class="success">
     <div class="success__inner">
       <div class="success__check">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
 
       <h1 class="success__title">You're <em>in</em></h1>
-      <p class="success__subtitle">Thanks for grabbing the playbook. Download your files below — and welcome to the Quiet Operator community.</p>
+      <p class="success__subtitle">Thanks for grabbing the playbook. Click below to download your copy. If you have questions, find me on X.</p>
 
-      <div class="success__downloads">
-        <ul>
-          <li><a href="#" class="dl-primary">The Quiet Operator Playbook <span class="dl-badge">PDF</span></a></li>
-          <li><a href="#">Niche Finder Scoring Matrix</a></li>
-          <li><a href="#">Client Pitch Deck</a></li>
-          <li><a href="#">Proposal &amp; Pricing Templates</a></li>
-          <li><a href="#">Outreach Scripts</a></li>
-          <li><a href="https://github.com/tkhongsap" target="_blank">Agent Starter Code <span class="dl-badge dl-badge--alt">GitHub</span></a></li>
-          <li><a href="#">Case Study Library</a></li>
-        </ul>
-      </div>
+      <a href="/The_Quiet_Operator.pdf" download class="success__download-btn">Download PDF <svg class="success__download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
 
-      <p class="success__footnote">Download links also sent to your email.</p>
-
-      <p class="success__social">Questions? <a href="https://x.com/tkhongsap" target="_blank">@tkhongsap on X</a> · <a href="mailto:ta@tkhongsap.io">ta@tkhongsap.io</a></p>
-
-      <a href="/" class="success__back">← Back to Home</a>
+      <p class="success__contact">Questions? <a href="https://x.com/quietoperator67" target="_blank">@quietoperator67 on X</a> · <a href="mailto:tk7p7103@gmail.com">tk7p7103@gmail.com</a></p>
     </div>
   </section>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var sessionId = params.get('session_id');
+      if (!sessionId) return;
+      var origin = window.location.origin;
+      var API_URL = origin.indexOf(':5000') !== -1 ? origin.replace(':5000', ':3000') : origin.replace(/:\d+$/, '') + ':3000';
+      fetch(API_URL + '/fulfill', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId })
+      }).catch(function () {});
+    })();
+  </script>
 </body>
 </html>

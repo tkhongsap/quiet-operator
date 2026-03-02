@@ -46,9 +46,13 @@ async function loadLocalPricing() {
       el.textContent = data.display;
     });
 
-    document.querySelectorAll('[data-checkout]').forEach(btn => {
-      btn.textContent = `Get the Playbook — ${data.display}`;
-    });
+    if (window.i18n) {
+      window.i18n.setPriceDisplay(data.display);
+    } else {
+      document.querySelectorAll('[data-checkout]').forEach(btn => {
+        btn.textContent = `Get the Playbook — ${data.display}`;
+      });
+    }
   } catch (err) {
     console.error('Failed to load local pricing:', err);
   }
@@ -89,14 +93,16 @@ document.querySelectorAll('[data-checkout]').forEach(btn => {
   btn.addEventListener('click', async (e) => {
     e.preventDefault();
     const originalText = btn.textContent;
-    btn.textContent = 'Redirecting…';
+    btn.textContent = window.i18n ? window.i18n.t('checkout.redirecting') : 'Redirecting…';
     btn.style.pointerEvents = 'none';
+
+    const locale = window.i18n ? window.i18n.getLocale() : 'en';
 
     try {
       const res = await fetch(`${API_URL}/create-checkout-session/playbook`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currency: detectedCurrency }),
+        body: JSON.stringify({ currency: detectedCurrency, locale }),
       });
       const data = await res.json();
 
@@ -107,7 +113,7 @@ document.querySelectorAll('[data-checkout]').forEach(btn => {
       }
     } catch (err) {
       console.error('Checkout error:', err);
-      alert('Something went wrong. Please try again.');
+      alert(window.i18n ? window.i18n.t('checkout.error') : 'Something went wrong. Please try again.');
       btn.textContent = originalText;
       btn.style.pointerEvents = '';
     }

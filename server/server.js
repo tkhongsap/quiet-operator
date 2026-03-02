@@ -1,6 +1,7 @@
 if (require('fs').existsSync('.env')) require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const { Resend } = require('resend');
 
 if (!process.env.STRIPE_SECRET_KEY) {
   console.error('FATAL: STRIPE_SECRET_KEY is not set. Add it as a secret in the Replit Secrets tab.');
@@ -8,6 +9,11 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+if (!resend) {
+  console.warn('WARNING: RESEND_API_KEY is not set. Confirmation emails will not be sent.');
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,8 +23,14 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 const PRODUCT = {
-  name: 'The Quiet Operator Playbook',
-  description: 'The step-by-step playbook for turning AI skills into recurring revenue.',
+  en: {
+    name: 'The Quiet Operator Playbook',
+    description: 'The step-by-step playbook for turning AI skills into recurring revenue.',
+  },
+  th: {
+    name: 'The Quiet Operator Playbook',
+    description: 'Playbook แบบ step-by-step สำหรับเปลี่ยนทักษะ AI ให้เป็นรายได้ประจำ',
+  },
 };
 
 const PRICING = {
@@ -34,6 +46,66 @@ const PRICING = {
   eur: { amount: 2700, symbol: '€', display: '€27' },
   gbp: { amount: 2300, symbol: '£', display: '£23' },
 };
+
+const PDF_URL = `${CLIENT_URL}/The_Quiet_Operator.pdf`;
+
+const fulfilledSessions = new Set();
+
+function buildConfirmationEmail() {
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0;padding:0;background:#0a0a0a;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
+          <tr>
+            <td align="center" style="padding-bottom:32px;">
+              <h1 style="margin:0;font-size:28px;font-weight:700;color:#d4a843;font-style:italic;">You're in</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#ffffff;border-radius:8px;padding:40px 36px;">
+              <p style="margin:0 0 8px;font-size:15px;color:#1a1a1a;line-height:1.6;">
+                Thanks for grabbing <strong>The Quiet Operator Playbook</strong>.
+              </p>
+              <p style="margin:0 0 32px;font-size:15px;color:#1a1a1a;line-height:1.6;">
+                Click below to download your copy:
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding-bottom:32px;">
+                    <a href="${PDF_URL}" style="display:inline-block;background:#d4a843;color:#0a0a0a;font-size:15px;font-weight:600;text-decoration:none;padding:14px 32px;border-radius:6px;">Download PDF</a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 16px;font-size:13px;color:#666;line-height:1.6;">
+                You can also access your thank-you page anytime at:<br>
+                <a href="${CLIENT_URL}/success.html" style="color:#d4a843;text-decoration:none;">${CLIENT_URL}/success.html</a>
+              </p>
+              <p style="margin:0;font-size:13px;color:#1a1a1a;line-height:1.6;">
+                <strong>Need help?</strong> Reply to this email or find me on X — I personally answer questions from playbook buyers.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding-top:28px;">
+              <p style="margin:0;font-size:12px;color:#666;">
+                Questions? <a href="https://x.com/quietoperator67" style="color:#666;text-decoration:none;">@quietoperator67</a> · <a href="mailto:tk7p7103@gmail.com" style="color:#666;text-decoration:none;">tk7p7103@gmail.com</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
 
 app.get('/pricing', (req, res) => {
   const currency = (req.query.currency || 'usd').toLowerCase();
@@ -51,6 +123,8 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
   const requestedCurrency = (req.body.currency || 'usd').toLowerCase();
   const currency = PRICING[requestedCurrency] ? requestedCurrency : 'usd';
   const pricing = PRICING[currency];
+  const locale = req.body.locale === 'th' ? 'th' : 'en';
+  const product = PRODUCT[locale];
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -60,8 +134,8 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
           price_data: {
             currency: currency,
             product_data: {
-              name: PRODUCT.name,
-              description: PRODUCT.description,
+              name: product.name,
+              description: product.description,
             },
             unit_amount: pricing.amount,
           },
@@ -69,7 +143,7 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${CLIENT_URL}/success.html`,
+      success_url: `${CLIENT_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${CLIENT_URL}/`,
     });
 
@@ -77,6 +151,52 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
   } catch (err) {
     console.error('Stripe error:', err.message);
     res.status(500).json({ error: 'Failed to create checkout session.' });
+  }
+});
+
+app.post('/fulfill', async (req, res) => {
+  const { session_id } = req.body;
+
+  if (!session_id) {
+    return res.status(400).json({ error: 'Missing session_id' });
+  }
+
+  if (fulfilledSessions.has(session_id)) {
+    return res.json({ status: 'already_sent' });
+  }
+
+  try {
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+
+    if (session.payment_status !== 'paid') {
+      return res.status(400).json({ error: 'Payment not completed' });
+    }
+
+    const customerEmail = session.customer_details?.email;
+    if (!customerEmail) {
+      return res.status(400).json({ error: 'No customer email found' });
+    }
+
+    if (!resend) {
+      console.warn('Resend not configured — skipping email to', customerEmail);
+      fulfilledSessions.add(session_id);
+      return res.json({ status: 'skipped', reason: 'email_not_configured' });
+    }
+
+    await resend.emails.send({
+      from: 'Quiet Operator <onboarding@resend.dev>',
+      to: customerEmail,
+      subject: "You're in — here's your playbook",
+      html: buildConfirmationEmail(),
+    });
+
+    console.log('Confirmation email sent to', customerEmail);
+    fulfilledSessions.add(session_id);
+
+    res.json({ status: 'sent', email: customerEmail });
+  } catch (err) {
+    console.error('Fulfill error:', err.message);
+    res.status(500).json({ error: 'Failed to fulfill order' });
   }
 });
 

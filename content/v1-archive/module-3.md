@@ -78,8 +78,6 @@ Trigger: New email in invoices@client.com
 
 **Cons:** Doesn't scale to complex multi-step processes. If your workflow has branching logic ("if X, do Y; if Z, do W"), the single agent starts getting messy.
 
-**Reference case:** Nat Eliason gave an autonomous agent (Felix) $1,000 and tool access — Vercel for hosting, Stripe for payments, a Mac Mini for compute. Felix created a website, built a PDF guide, set up payment processing, and generated $14,718 in revenue in three weeks. That's a single agent with tools, operating autonomously. The architecture is simple. The results aren't.
-
 **Cost to run:** Typically $20-40/month in API costs for a moderately active workflow (a few hundred invocations per day). Add $5-10/month for hosting. Your margins on a $1,000-2,000/month retainer are north of 95%.
 
 ### Pattern 2: Multi-Agent Orchestration

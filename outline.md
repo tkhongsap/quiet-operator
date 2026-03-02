@@ -173,7 +173,6 @@
 - Example: AI agent that monitors a Gmail inbox, extracts invoice data from attachments, categorizes expenses, and updates a Google Sheet
 - Pros: simple to build, easy to debug, fast to deploy
 - Cons: limited to sequential tasks, doesn't handle complex decision trees well
-- Reference: Nat Eliason's Felix — autonomous agent with tool access that built and sold its own digital product
 
 #### Pattern 2: Multi-Agent Orchestration (The Dubi Model)
 - When to use: complex workflows with multiple stages, parallel processing, or quality gates
