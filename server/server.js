@@ -4,15 +4,17 @@ const express = require('express');
 const cors = require('cors');
 const { Resend } = require('resend');
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  console.error('FATAL: STRIPE_SECRET_KEY is not set. Add it as a secret in the Replit Secrets tab.');
-  process.exit(1);
+let stripe = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+} else {
+  console.warn('WARNING: STRIPE_SECRET_KEY is not set. Stripe endpoints will return errors.');
 }
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-
-if (!resend) {
+let resend = null;
+if (process.env.RESEND_API_KEY) {
+  resend = new Resend(process.env.RESEND_API_KEY);
+} else {
   console.warn('WARNING: RESEND_API_KEY is not set. Confirmation emails will not be sent.');
 }
 
@@ -129,6 +131,9 @@ app.get('/pricing', (req, res) => {
 });
 
 app.post('/create-checkout-session/playbook', async (req, res) => {
+  if (!stripe) {
+    return res.status(503).json({ error: 'Stripe is not configured' });
+  }
   const requestedCurrency = (req.body.currency || 'usd').toLowerCase();
   const currency = PRICING[requestedCurrency] ? requestedCurrency : 'usd';
   const pricing = PRICING[currency];
@@ -164,6 +169,10 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
 });
 
 app.post('/fulfill', async (req, res) => {
+  if (!stripe) {
+    return res.status(503).json({ error: 'Stripe is not configured' });
+  }
+
   const { session_id } = req.body;
 
   if (!session_id) {

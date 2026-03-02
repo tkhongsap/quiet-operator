@@ -41,11 +41,11 @@ externalPort = 80
 [deployment]
 deploymentTarget = "autoscale"
 publicDir = "landing-page"
-run = ["node", "server/server.js"]
+run = ["bash", "-c", "cd server && PORT=5000 node server.js"]
+build = ["bash", "-c", "cd server && npm install"]
 
 [userenv]
 
 [userenv.shared]
 CLIENT_URL = "https://a5692388-7de2-4b0a-a5ac-eb6998583c8b-00-2cugbbxqp58qp.pike.replit.dev"
 STRIPE_PUBLISHABLE_KEY = "pk_test_51T5zRTE4uFhk939cler29YLJT5WZYmoyrfYyOrhq76LrgNN1LRAx6ig0LVXfltJwDYjfbSFHa2ap9vh0tsISLYVJ00jROpmRIp"
-PORT = "3000"
