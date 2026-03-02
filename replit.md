@@ -42,12 +42,22 @@ Managed via Replit Secrets and Environment Variables:
 - `STRIPE_PUBLISHABLE_KEY` (env var) — Stripe publishable key (pk_test_...)
 - `CLIENT_URL` (env var) — Public URL of the frontend (Replit domain)
 - `PORT` (env var) — Backend port (3000)
+- `RESEND_API_KEY` (secret) — Resend API key for sending confirmation emails
 
 ## API Endpoints
 
-- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body for local currency pricing
+- `POST /create-checkout-session/playbook` — Creates a Stripe checkout session. Accepts optional `{ currency: "thb" }` body for local currency pricing. Success URL includes `?session_id={CHECKOUT_SESSION_ID}`
+- `POST /fulfill` — Sends confirmation email after payment. Accepts `{ session_id }`, validates Stripe payment status, sends styled email via Resend. Idempotent (in-memory guard)
 - `GET /pricing?currency=thb` — Returns pricing info for a given currency (amount, symbol, display string, supported currencies)
 - `GET /health` — Health check
+
+## Post-Purchase Email
+
+- Sent via Resend when user lands on success page with a valid Stripe session_id
+- From: `Quiet Operator <onboarding@resend.dev>` (Resend default sender)
+- Styled HTML email with "You're in" header, Download PDF button, thank-you page link, contact info
+- PDF_URL placeholder is `#` in server.js — update when real PDF is uploaded
+- Contact: @quietoperator67 on X · tk7p7103@gmail.com
 
 ## Products
 
