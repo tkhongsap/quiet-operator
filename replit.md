@@ -56,7 +56,8 @@ Managed via Replit Secrets and Environment Variables:
 - Sent via Resend when user lands on success page with a valid Stripe session_id
 - From: `Quiet Operator <onboarding@resend.dev>` (Resend default sender)
 - Styled HTML email with "You're in" header, Download PDF button, thank-you page link, contact info
-- PDF_URL placeholder is `#` in server.js — update when real PDF is uploaded
+- PDF download links to `/The_Quiet_Operator.pdf` (served from landing-page directory)
+- Thai version also available at `/The_Quiet_Operator_TH.pdf`
 - Contact: @quietoperator67 on X · tk7p7103@gmail.com
 
 ## Products
@@ -72,6 +73,7 @@ The frontend detects the user's timezone and maps it to a local currency. Suppor
 
 ## Setup Notes
 
+- `serve.json` in landing-page/ disables clean URLs to preserve query parameters (session_id) on redirects
 - The frontend's `API_URL` in `script.js` points to the Replit public domain on port 3000
 - CORS is configured to allow all origins (`*`) for Replit environment compatibility
 - Deployment is configured as a static site (landing-page directory)

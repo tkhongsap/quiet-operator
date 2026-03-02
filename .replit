@@ -54,11 +54,6 @@ externalPort = 3000
 localPort = 5000
 externalPort = 80
 
-[[ports]]
-localPort = 11804
-externalPort = 5000
-exposeLocalhost = true
-
 [deployment]
 deploymentTarget = "static"
 publicDir = "landing-page"

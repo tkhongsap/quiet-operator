@@ -47,7 +47,7 @@ const PRICING = {
   gbp: { amount: 2300, symbol: '£', display: '£23' },
 };
 
-const PDF_URL = '#';
+const PDF_URL = `${CLIENT_URL}/The_Quiet_Operator.pdf`;
 
 const fulfilledSessions = new Set();
 
