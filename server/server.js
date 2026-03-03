@@ -1,5 +1,4 @@
 if (require('fs').existsSync('.env')) require('dotenv').config();
-const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
@@ -59,42 +58,6 @@ const PRICING = {
   eur: { amount: 2700, symbol: '€', display: '€27' },
   gbp: { amount: 2300, symbol: '£', display: '£23' },
 };
-
-const EARLY_BIRD_PRICING = {
-  usd: { amount: 1200, symbol: '$', display: '$12' },
-  thb: { amount: 39900, symbol: '฿', display: '฿399' },
-  vnd: { amount: 29900000, symbol: '₫', display: '₫299,000' },
-  sgd: { amount: 1500, symbol: 'S$', display: 'S$15' },
-  myr: { amount: 4900, symbol: 'RM', display: 'RM49' },
-  php: { amount: 63900, symbol: '₱', display: '₱639' },
-  idr: { amount: 18900000, symbol: 'Rp', display: 'Rp189,000' },
-  jpy: { amount: 1800, symbol: '¥', display: '¥1,800' },
-  krw: { amount: 1500000, symbol: '₩', display: '₩15,000' },
-  eur: { amount: 1100, symbol: '€', display: '€11' },
-  gbp: { amount: 900, symbol: '£', display: '£9' },
-};
-
-const EARLY_BIRD_LIMIT = 99;
-const PURCHASE_COUNT_FILE = path.join(__dirname, 'data', 'purchase-count.json');
-
-function getPurchaseCount() {
-  try {
-    const data = JSON.parse(fs.readFileSync(PURCHASE_COUNT_FILE, 'utf8'));
-    return data.count || 0;
-  } catch {
-    return 0;
-  }
-}
-
-function incrementPurchaseCount() {
-  const count = getPurchaseCount() + 1;
-  fs.writeFileSync(PURCHASE_COUNT_FILE, JSON.stringify({ count }), 'utf8');
-  return count;
-}
-
-function isEarlyBirdActive() {
-  return getPurchaseCount() < EARLY_BIRD_LIMIT;
-}
 
 const fulfilledSessions = new Set();
 
@@ -157,25 +120,13 @@ function buildConfirmationEmail(baseUrl) {
 
 app.get('/pricing', (req, res) => {
   const currency = (req.query.currency || 'usd').toLowerCase();
-  const resolvedCurrency = PRICING[currency] ? currency : 'usd';
-  const pricing = PRICING[resolvedCurrency];
-  const earlyBirdActive = isEarlyBirdActive();
-  const earlyBirdPricing = EARLY_BIRD_PRICING[resolvedCurrency];
-  const remaining = Math.max(0, EARLY_BIRD_LIMIT - getPurchaseCount());
-
+  const pricing = PRICING[currency] || PRICING.usd;
   res.json({
-    currency: resolvedCurrency,
-    amount: earlyBirdActive ? earlyBirdPricing.amount : pricing.amount,
+    currency: PRICING[currency] ? currency : 'usd',
+    amount: pricing.amount,
     symbol: pricing.symbol,
-    display: earlyBirdActive ? earlyBirdPricing.display : pricing.display,
+    display: pricing.display,
     supported: Object.keys(PRICING),
-    earlyBird: {
-      active: earlyBirdActive,
-      display: earlyBirdPricing.display,
-      originalDisplay: pricing.display,
-      remaining: remaining,
-      limit: EARLY_BIRD_LIMIT,
-    },
   });
 });
 
@@ -185,7 +136,7 @@ app.post('/create-checkout-session/playbook', async (req, res) => {
   }
   const requestedCurrency = (req.body.currency || 'usd').toLowerCase();
   const currency = PRICING[requestedCurrency] ? requestedCurrency : 'usd';
-  const pricing = isEarlyBirdActive() ? EARLY_BIRD_PRICING[currency] : PRICING[currency];
+  const pricing = PRICING[currency];
   const locale = req.body.locale === 'th' ? 'th' : 'en';
   const product = PRODUCT[locale];
 
@@ -247,7 +198,6 @@ app.post('/fulfill', async (req, res) => {
     if (!resend) {
       console.warn('Resend not configured — skipping email to', customerEmail);
       fulfilledSessions.add(session_id);
-      incrementPurchaseCount();
       return res.json({ status: 'skipped', reason: 'email_not_configured' });
     }
 
@@ -260,7 +210,6 @@ app.post('/fulfill', async (req, res) => {
 
     console.log('Confirmation email sent to', customerEmail);
     fulfilledSessions.add(session_id);
-    incrementPurchaseCount();
 
     res.json({ status: 'sent', email: customerEmail });
   } catch (err) {
