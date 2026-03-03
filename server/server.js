@@ -32,7 +32,31 @@ function getBaseUrl(req) {
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  if (req.path.toLowerCase().endsWith('.pdf') && !req.path.startsWith('/download/')) {
+    return res.status(404).send('Not found');
+  }
+  next();
+});
 app.use(express.static(path.join(__dirname, '..', 'landing-page')));
+
+const ALLOWED_PDFS = ['The_Quiet_Operator.pdf', 'The_Quiet_Operator_TH.pdf'];
+
+app.get('/download/:filename', (req, res) => {
+  const { filename } = req.params;
+  if (!ALLOWED_PDFS.includes(filename)) {
+    return res.status(404).json({ error: 'File not found' });
+  }
+  const filePath = path.join(__dirname, '..', 'landing-page', filename);
+  if (!require('fs').existsSync(filePath)) {
+    return res.status(404).json({ error: 'File not found' });
+  }
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.sendFile(filePath);
+});
 
 const PRODUCT = {
   en: {
@@ -62,7 +86,7 @@ const PRICING = {
 const fulfilledSessions = new Set();
 
 function buildConfirmationEmail(baseUrl) {
-  const pdfUrl = `${baseUrl}/The_Quiet_Operator.pdf`;
+  const pdfUrl = `${baseUrl}/download/The_Quiet_Operator.pdf`;
   return `<!DOCTYPE html>
 <html>
 <head>
