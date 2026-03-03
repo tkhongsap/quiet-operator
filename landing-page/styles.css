@@ -388,8 +388,12 @@ body.locale-th {
   border: none;
   margin-bottom: 48px;
 }
-.success__download-btn:hover {
+.success__download-btn:hover:not(:disabled) {
   opacity: 0.85;
+}
+.success__download-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 .success__download-btn:focus-visible {
   outline: 2px solid #d4a843;

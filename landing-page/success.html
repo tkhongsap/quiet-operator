@@ -21,7 +21,7 @@
       <h1 class="success__title">You're <em>in</em></h1>
       <p class="success__subtitle">Thanks for grabbing the playbook. Click below to download your copy. If you have questions, find me on X.</p>
 
-      <a href="/download/The_Quiet_Operator.pdf" class="success__download-btn">Download PDF <svg class="success__download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+      <button type="button" id="downloadBtn" class="success__download-btn">Download PDF <svg class="success__download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
 
       <p class="success__contact">Questions? <a href="https://x.com/quietoperator67" target="_blank">@quietoperator67 on X</a> · <a href="mailto:tk7p7103@gmail.com">tk7p7103@gmail.com</a></p>
     </div>
@@ -30,12 +30,42 @@
     (function () {
       var params = new URLSearchParams(window.location.search);
       var sessionId = params.get('session_id');
-      if (!sessionId) return;
-      fetch('/fulfill', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session_id: sessionId })
-      }).catch(function () {});
+      if (sessionId) {
+        fetch('/fulfill', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId })
+        }).catch(function () {});
+      }
+
+      var btn = document.getElementById('downloadBtn');
+      var originalText = btn.innerHTML;
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        btn.innerHTML = 'Preparing download\u2026';
+        fetch('/download/The_Quiet_Operator.pdf')
+          .then(function (res) {
+            if (!res.ok) throw new Error('Download failed');
+            return res.blob();
+          })
+          .then(function (blob) {
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'The_Quiet_Operator.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+          })
+          .catch(function () {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            alert('Download failed. Please try again or contact support.');
+          });
+      });
     })();
   </script>
 </body>

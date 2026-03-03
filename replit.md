@@ -57,9 +57,9 @@ Managed via Replit Secrets and Environment Variables:
 - Triggered when user lands on success page with a valid Stripe session_id
 - From: `Quiet Operator <onboarding@resend.dev>` (Resend default sender)
 - Styled HTML email with "You're in" header, Download PDF button, thank-you page link, contact info
-- PDF download links to `/download/The_Quiet_Operator.pdf` (served via dedicated endpoint with proper headers)
+- Success page uses blob-based download: JS fetches PDF via `/download/The_Quiet_Operator.pdf`, creates a blob URL, and triggers download programmatically (bypasses Chrome Safe Browsing false positives)
+- Email links still use direct `/download/The_Quiet_Operator.pdf` URL (served with proper Content-Type, Content-Disposition, X-Content-Type-Options headers)
 - Thai version also available at `/download/The_Quiet_Operator_TH.pdf`
-- PDFs are served with Content-Type, Content-Disposition, and X-Content-Type-Options headers to prevent browser false-positive virus warnings
 - Direct static access to PDF files is blocked (returns 404)
 - Contact: @quietoperator67 on X · tk7p7103@gmail.com
 
